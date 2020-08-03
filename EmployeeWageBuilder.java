@@ -1,4 +1,3 @@
-
 interface EmployeeWage{
 	public void emp_Wage_Cal();
 	public void wage_Compute();
