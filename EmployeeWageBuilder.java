@@ -1,6 +1,8 @@
 
 interface EmployeeWage{
 	public void emp_Wage_Cal();
+	public void wage_Compute();
+	public void wage_display();
 }
 
 class Wage_Cal implements EmployeeWage{
@@ -14,10 +16,18 @@ class Wage_Cal implements EmployeeWage{
 	int total_EmpWage=0;		
 	int total_working_day=0;
 	int total_empHrs = 0;
+	public void wage_Compute(){
+			emp_Wage = Emp_Rate_PerHr * emp_FullDay_Hr ;		
+			System.out.println("Employee's [day-" + total_working_day + "] wage is " + emp_Wage);
+	}
+	public void wage_display(){
+		System.out.println("Totla Working hours " + total_empHrs );
+		System.out.println("Employee Total wage For a Month : " + total_EmpWage);
+	}
 	public void emp_Wage_Cal(){
 		while(total_working_day < Total_Work_Day && total_empHrs < Total_Working_Hr_Month ){
 			total_working_day++;
-			int empCheck= (int) Math.floor(Math.random()*10) % 3 ;		
+			int empCheck = (int) Math.floor(Math.random()*10) % 3 ;		
 			switch (empCheck){
 				case Is_Full_Time :
 					emp_FullDay_Hr = 8;
@@ -29,13 +39,11 @@ class Wage_Cal implements EmployeeWage{
 					emp_FullDay_Hr = 0;
 				break ;
 			}
-			emp_Wage = Emp_Rate_PerHr * emp_FullDay_Hr ;		
 			total_EmpWage += emp_Wage ;
 			total_empHrs += emp_FullDay_Hr;
-			System.out.println("Employee's [day-" + total_working_day + "] wage is " + emp_Wage);
+			wage_Compute();	
 		}	
-		System.out.println("Totla Working hours " + total_empHrs );
-		System.out.println("Employee Total wage For a Month : " + total_EmpWage);
+			wage_display();
 	}
 }
 class EmployeeWageBuilder {
